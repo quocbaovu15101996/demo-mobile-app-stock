@@ -14,6 +14,10 @@ const layoutAuthenticate: LayoutRoot = {
                 visible: false,
                 height: 0,
               },
+              statusBar: {
+                visible: false,
+                drawBehind: false,
+              },
             },
           },
         },
@@ -39,6 +43,15 @@ const layoutRoot: LayoutRoot = {
                 component: {
                   id: "HOME_SCREEN",
                   name: Screens.Home,
+                  options: {
+                    topBar: {
+                      visible: false,
+                      height: 0,
+                    },
+                    statusBar: {
+                      backgroundColor: "#F8F9FD",
+                    },
+                  },
                 },
               },
             ],
@@ -61,6 +74,15 @@ const layoutRoot: LayoutRoot = {
                 component: {
                   id: "MARKETS_SCREEN",
                   name: Screens.Markets,
+                  options: {
+                    topBar: {
+                      visible: false,
+                      height: 0,
+                    },
+                    statusBar: {
+                      backgroundColor: "#F8F9FD",
+                    },
+                  },
                 },
               },
             ],
