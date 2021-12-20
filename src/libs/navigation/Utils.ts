@@ -58,7 +58,7 @@ const layoutRoot: LayoutRoot = {
             options: {
               bottomTab: {
                 testID: "HOME_SCREEN_TAB",
-                text: "Trang chủ",
+                text: "Home",
                 selectedTextColor: "#597AF4",
                 icon: require("../../../asset/bottomTabs/home.png"),
                 selectedIcon: require("../../../asset/bottomTabs/selected_home.png"),
@@ -102,6 +102,8 @@ const layoutRoot: LayoutRoot = {
   },
 };
 
-export function startApp(): void {
-  Navigation.setRoot(layoutRoot);
+export function startApp(callbackFun: () => void): void {
+  Navigation.setRoot(layoutRoot).then(() => {
+    callbackFun?.();
+  });
 }
