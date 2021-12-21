@@ -14,10 +14,11 @@ import {
   ListRenderItem,
   View,
 } from "react-native";
+import { TabCoin } from "../../screens/types/Markets";
 
 type Props = {
-  data?: any[];
-  onChangeTab: (item: any, index) => void;
+  data?: TabCoin[];
+  onChangeTab: (item: TabCoin) => void;
 };
 
 const Tabs: FC<Props> = (props) => {
@@ -27,7 +28,7 @@ const Tabs: FC<Props> = (props) => {
 
   useEffect(() => {
     if (tab.current) {
-      props.onChangeTab(tab.current, activeTabIndex);
+      props.onChangeTab(tab.current);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTabIndex]);

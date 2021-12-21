@@ -36,75 +36,46 @@ const Login: FunctionComponent = () => {
 
           <TextField
             onChangeText={() => {}}
-            style={{ marginTop: 60, paddingHorizontal: 14 }}
+            style={styles.textEmail}
             textInputProps={{
               placeholder: "Email",
             }}
             leftIcon={
               <Image
                 source={require("../../../asset/login/userIcon.png")}
-                style={{ marginRight: 9 }}
+                style={styles.iconUser}
               />
             }
           />
           <TextField
             onChangeText={() => {}}
-            style={{ marginTop: 10, paddingHorizontal: 14 }}
+            style={styles.textPassword}
             textInputProps={{
               placeholder: "Password",
             }}
             leftIcon={
               <Image
                 source={require("../../../asset/login/passwordIcon.png")}
-                style={{ marginRight: 9 }}
+                style={styles.iconUser}
               />
             }
             rightIcon={
               <Image source={require("../../../asset/login/eyeIcon.png")} />
             }
           />
-          <View
-            style={{
-              flexDirection: "row",
-              width: "100%",
-              marginTop: 16,
-              alignItems: "center",
-            }}
-          >
-            <View
-              style={{
-                height: 19,
-                width: 19,
-                borderRadius: 4,
-                borderWidth: 1.5,
-                borderColor: "rgba(255, 255, 255, 0.2)",
-                marginRight: 6,
-              }}
-            />
-            <Text style={[textPrimary, { flex: 1 }]}>Remember me</Text>
+          <View style={styles.viewTick}>
+            <View style={styles.viewForgotPassword} />
+            <Text style={[textPrimary, styles.flex1]}>Remember me</Text>
             <Text style={[textPrimary]}>Forgot your password?</Text>
           </View>
         </View>
-        <View
-          style={{
-            paddingHorizontal: 10,
-            alignItems: "center",
-            paddingBottom: 62,
-          }}
-        >
+        <View style={styles.footer}>
           <Pressable onPress={onPressSignIn} style={styles.btnSignIn}>
-            <Text
-              style={[
-                textPrimary,
-                { lineHeight: 16, color: "#5073F2", fontWeight: "bold" },
-              ]}
-            >
-              SIGN IN
-            </Text>
+            <Text style={[textPrimary, styles.textSignInFooter]}>SIGN IN</Text>
           </Pressable>
-          <Text style={[textPrimary, { marginTop: 20 }]}>
+          <Text style={[textPrimary, styles.textSuggest]}>
             Don’t have an account yet?{" "}
-            <Text style={[textPrimary, { fontWeight: "bold" }]}>SIGN UP</Text>
+            <Text style={[textPrimary, styles.textSignUp]}>SIGN UP</Text>
           </Text>
         </View>
       </ImageBackground>
@@ -115,9 +86,19 @@ const Login: FunctionComponent = () => {
 export default Login;
 
 const styles = StyleSheet.create({
-  flex1: { flex: 1 },
-  content: { flex: 1, alignItems: "center", paddingHorizontal: 10 },
-  iconLogo: { height: 55, width: 55, marginTop: 80 },
+  flex1: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    alignItems: "center",
+    paddingHorizontal: 10,
+  },
+  iconLogo: {
+    height: 55,
+    width: 55,
+    marginTop: 80,
+  },
   textSignIn: {
     fontWeight: "900",
     fontSize: 23,
@@ -148,5 +129,46 @@ const styles = StyleSheet.create({
         elevation: 2,
       },
     }),
+  },
+  textEmail: {
+    marginTop: 60,
+    paddingHorizontal: 14,
+  },
+  textPassword: {
+    marginTop: 10,
+    paddingHorizontal: 14,
+  },
+  iconUser: {
+    marginRight: 9,
+  },
+  textSignInFooter: {
+    lineHeight: 16,
+    color: "#5073F2",
+    fontWeight: "bold",
+  },
+  textSuggest: {
+    marginTop: 20,
+  },
+  footer: {
+    paddingHorizontal: 10,
+    alignItems: "center",
+    paddingBottom: 62,
+  },
+  viewForgotPassword: {
+    height: 19,
+    width: 19,
+    borderRadius: 4,
+    borderWidth: 1.5,
+    borderColor: "rgba(255, 255, 255, 0.2)",
+    marginRight: 6,
+  },
+  viewTick: {
+    flexDirection: "row",
+    width: "100%",
+    marginTop: 16,
+    alignItems: "center",
+  },
+  textSignUp: {
+    fontWeight: "bold",
   },
 });

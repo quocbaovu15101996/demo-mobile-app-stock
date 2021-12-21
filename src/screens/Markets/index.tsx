@@ -7,7 +7,7 @@ import SearchBar, {
   SearchBarHandler,
 } from "../../components/markets/SearchBar";
 import Tabs from "../../components/markets/Tabs";
-import { TabCoin } from "../types/Markets";
+import { CoinPrices, TabCoin } from "../types/Markets";
 import Page from "../../components/markets/Page";
 
 const { width } = Dimensions.get("window");
@@ -16,10 +16,11 @@ const Markets: FunctionComponent = () => {
   const data = useRef<TabCoin[]>([]);
   const activeTab = useRef<TabCoin | null>(null);
   const activeTabSearch = useRef<TabCoin | null>(null);
-  const priceMap = useRef<any>([]);
+  const priceMap = useRef<CoinPrices[]>([]);
   const isLoading = useRef(true);
   const pager = useRef<PagerView>(null);
   const refSearchBar = useRef<SearchBarHandler>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setUpdateState] = useState<boolean>(false);
 
   const fetchData = async () => {
@@ -38,7 +39,7 @@ const Markets: FunctionComponent = () => {
     }
   };
 
-  const onChangeTab = (tab, index) => {
+  const onChangeTab = (tab: TabCoin) => {
     activeTab.current = tab;
     activeTabSearch.current = tab;
     refSearchBar.current?.clearSearchText();
@@ -71,7 +72,7 @@ const Markets: FunctionComponent = () => {
         <SearchBar />
         <View style={styles.viewLoading}>
           <ActivityIndicator
-            style={{ backgroundColor: "transparent" }}
+            style={styles.progress}
             color={"#6B778C"}
             size={24}
           />
@@ -111,5 +112,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  progress: {
+    backgroundColor: "transparent",
   },
 });

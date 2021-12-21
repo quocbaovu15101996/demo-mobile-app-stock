@@ -1,13 +1,19 @@
 import React, { FC } from "react";
-import { Dimensions, FlatList, ListRenderItem, Text, View } from "react-native";
-import { CoinCard } from "../../screens/types/Markets";
+import {
+  Dimensions,
+  FlatList,
+  ListRenderItem,
+  StyleSheet,
+  View,
+} from "react-native";
+import { CoinCard, CoinPrices } from "../../screens/types/Markets";
 import Card from "./Card";
 
 const { width } = Dimensions.get("window");
 
 type Props = {
   list: CoinCard[];
-  findCoinPrices: (marketName: string) => any;
+  findCoinPrices: (marketName: string) => CoinPrices;
 };
 
 const Page: FC<Props> = (props) => {
@@ -23,7 +29,7 @@ const Page: FC<Props> = (props) => {
     <View style={{ width }}>
       <FlatList
         showsVerticalScrollIndicator={false}
-        style={{ marginTop: 10 }}
+        style={styles.flatlist}
         data={props.list}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
@@ -35,3 +41,9 @@ const Page: FC<Props> = (props) => {
   );
 };
 export default Page;
+
+const styles = StyleSheet.create({
+  flatlist: {
+    marginTop: 10,
+  },
+});

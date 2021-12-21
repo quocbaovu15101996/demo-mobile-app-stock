@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
-import { CoinCard } from "../../screens/types/Markets";
+import { CoinCard, CoinPrices } from "../../screens/types/Markets";
 import { textPrimary } from "../../styles/text.styles";
 
 type Props = {
   item: CoinCard;
-  priceInfo?: any;
+  priceInfo?: CoinPrices;
 };
 const Card: FC<Props> = ({ item, priceInfo }) => {
   const coinName = item.marketCurrency.toLowerCase();
@@ -31,9 +31,9 @@ const Card: FC<Props> = ({ item, priceInfo }) => {
           source={{
             uri: imageUrl,
           }}
-          style={{ height: 38, width: 38, borderRadius: 8, marginRight: 15 }}
+          style={styles.viewImage}
         />
-        <View style={{ flex: 1 }}>
+        <View style={styles.flex1}>
           <Text style={[textPrimary, styles.textName]}>
             {item.marketCurrency}
           </Text>
@@ -60,6 +60,9 @@ const Card: FC<Props> = ({ item, priceInfo }) => {
 export default React.memo(Card);
 
 const styles = StyleSheet.create({
+  flex1: {
+    flex: 1,
+  },
   container: {
     marginHorizontal: 10,
     marginBottom: 10,
@@ -96,5 +99,11 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     fontSize: 13,
     lineHeight: 18,
+  },
+  viewImage: {
+    height: 38,
+    width: 38,
+    borderRadius: 8,
+    marginRight: 15,
   },
 });

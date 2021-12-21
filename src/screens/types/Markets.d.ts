@@ -16,3 +16,16 @@ export interface TabCoin {
   title: string;
   list: CoinCard[];
 }
+
+export interface CoinPrices {
+  marketId: number;
+  market: string;
+  askPrice: number;
+  bidPrice: number;
+  lastPrice: number;
+  openPrice: number;
+  prevPrice: number;
+  high: number;
+  low: number;
+  volume: number;
+}
