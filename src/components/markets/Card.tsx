@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
+import FastImage from "react-native-fast-image";
 import { CoinCard, CoinPrices } from "../../screens/types/Markets";
 import { textPrimary } from "../../styles/text.styles";
 
@@ -27,7 +28,7 @@ const Card: FC<Props> = ({ item, priceInfo }) => {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Image
+        <FastImage
           source={{
             uri: imageUrl,
           }}

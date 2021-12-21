@@ -1,5 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
+import FastImage from "react-native-fast-image";
 import { textPrimary } from "../../styles/text.styles";
 
 type Props = {
@@ -33,7 +34,7 @@ const SearchBar = forwardRef<SearchBarHandler, Props>((props, ref) => {
           placeholder="Search..."
         />
       </View>
-      <Image
+      <FastImage
         source={require("../../../asset/markets/searchIcon.png")}
         style={styles.iconSearch}
       />
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     flexDirection: "row",
-    paddingVertical: 20,
+    marginVertical: 20,
     paddingHorizontal: 20,
     alignItems: "center",
   },
@@ -67,10 +68,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     marginHorizontal: 12,
+    borderRadius: 6,
   },
   textInput: {
     ...textPrimary,
     color: "#3D436C",
     marginLeft: 4,
+    maxHeight: 38,
   },
 });

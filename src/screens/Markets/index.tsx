@@ -1,7 +1,12 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from "react";
-import { ActivityIndicator, Dimensions, StyleSheet } from "react-native";
+import {
+  ActivityIndicator,
+  Dimensions,
+  Pressable,
+  StyleSheet,
+  Text,
+} from "react-native";
 import { SafeAreaView, View } from "react-native";
-import { PagerView } from "react-native-pager-view";
 import { fetchMarket, fetchMarketSummaries } from "../../apis";
 import SearchBar, {
   SearchBarHandler,
@@ -9,11 +14,14 @@ import SearchBar, {
 import Tabs from "../../components/markets/Tabs";
 import { CoinPrices, TabCoin } from "../types/Markets";
 import Page from "../../components/markets/Page";
+import PagerView from "react-native-pager-view";
+import { textPrimary } from "../../styles/text.styles";
 
 const { width } = Dimensions.get("window");
 
 const Markets: FunctionComponent = () => {
   const data = useRef<TabCoin[]>([]);
+  const error = useRef(false);
   const activeTab = useRef<TabCoin | null>(null);
   const activeTabSearch = useRef<TabCoin | null>(null);
   const priceMap = useRef<CoinPrices[]>([]);
@@ -34,6 +42,7 @@ const Markets: FunctionComponent = () => {
       isLoading.current = false;
       setUpdateState((prevState) => !prevState);
     } else {
+      error.current = true;
       isLoading.current = false;
       setUpdateState((prevState) => !prevState);
     }
@@ -45,6 +54,12 @@ const Markets: FunctionComponent = () => {
     refSearchBar.current?.clearSearchText();
     setUpdateState((prevState) => !prevState);
     pager.current?.setPage(1);
+  };
+
+  const onPressRetry = () => {
+    isLoading.current = true;
+    setUpdateState((prevState) => !prevState);
+    fetchData();
   };
 
   useEffect(() => {
@@ -76,6 +91,20 @@ const Markets: FunctionComponent = () => {
             color={"#6B778C"}
             size={24}
           />
+        </View>
+      </SafeAreaView>
+    );
+  }
+  if (error.current) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <SearchBar />
+        <View style={styles.viewLoading}>
+          <Pressable onPress={onPressRetry} style={styles.btnRetry}>
+            <Text style={[textPrimary, { color: "#5073F2" }]}>
+              Có lỗi xảy ra vui lòng thử lại
+            </Text>
+          </Pressable>
         </View>
       </SafeAreaView>
     );
@@ -115,5 +144,13 @@ const styles = StyleSheet.create({
   },
   progress: {
     backgroundColor: "transparent",
+  },
+  btnRetry: {
+    height: 50,
+    width: 200,
+    backgroundColor: "#BDCFFF",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 6,
   },
 });

@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from "react";
 import {
-  Image,
-  ImageBackground,
   StatusBar,
   Text,
   View,
@@ -9,6 +7,7 @@ import {
   Pressable,
   Platform,
 } from "react-native";
+import FastImage from "react-native-fast-image";
 import TextField from "../../components/login/TextField";
 import { startApp } from "../../libs/navigation/Utils";
 import { textPrimary } from "../../styles/text.styles";
@@ -19,13 +18,13 @@ const Login: FunctionComponent = () => {
   };
   return (
     <>
-      <StatusBar translucent backgroundColor="red" hidden={true} />
-      <ImageBackground
+      <StatusBar translucent hidden={true} />
+      <FastImage
         source={require("../../../asset/login/backgroundLogin.png")}
         style={styles.flex1}
       >
         <View style={styles.content}>
-          <Image
+          <FastImage
             source={require("../../../asset/login/logo.png")}
             style={styles.iconLogo}
           />
@@ -41,7 +40,7 @@ const Login: FunctionComponent = () => {
               placeholder: "Email",
             }}
             leftIcon={
-              <Image
+              <FastImage
                 source={require("../../../asset/login/userIcon.png")}
                 style={styles.iconUser}
               />
@@ -54,13 +53,13 @@ const Login: FunctionComponent = () => {
               placeholder: "Password",
             }}
             leftIcon={
-              <Image
+              <FastImage
                 source={require("../../../asset/login/passwordIcon.png")}
                 style={styles.iconUser}
               />
             }
             rightIcon={
-              <Image source={require("../../../asset/login/eyeIcon.png")} />
+              <FastImage source={require("../../../asset/login/eyeIcon.png")} />
             }
           />
           <View style={styles.viewTick}>
@@ -78,7 +77,7 @@ const Login: FunctionComponent = () => {
             <Text style={[textPrimary, styles.textSignUp]}>SIGN UP</Text>
           </Text>
         </View>
-      </ImageBackground>
+      </FastImage>
     </>
   );
 };

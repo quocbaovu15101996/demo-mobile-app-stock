@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useCallback, useMemo } from "react";
 import {
   Dimensions,
   FlatList,
@@ -17,32 +17,44 @@ type Props = {
 };
 
 const Page: FC<Props> = (props) => {
-  const renderItem: ListRenderItem<CoinCard> = ({ item }) => {
-    return (
-      <Card item={item} priceInfo={props.findCoinPrices(item.marketName)} />
-    );
-  };
-  const keyExtractor = (_item: CoinCard, index: number): string =>
-    index.toString();
-
-  return (
-    <View style={{ width }}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        style={styles.flatlist}
-        data={props.list}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-        initialNumToRender={5}
-        maxToRenderPerBatch={5}
-        updateCellsBatchingPeriod={20}
-      />
-    </View>
+  const renderItem: ListRenderItem<CoinCard> = useCallback(
+    ({ item }) => {
+      return (
+        <Card item={item} priceInfo={props.findCoinPrices(item.marketName)} />
+      );
+    },
+    [props]
   );
+
+  const keyExtractor = useCallback(
+    (_item: CoinCard, index: number): string => index.toString(),
+    []
+  );
+
+  return useMemo(() => {
+    return (
+      <View style={styles.container}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          style={styles.flatlist}
+          data={props.list}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          initialNumToRender={5}
+          maxToRenderPerBatch={5}
+          updateCellsBatchingPeriod={20}
+        />
+      </View>
+    );
+  }, [keyExtractor, props.list, renderItem]);
 };
+
 export default Page;
 
 const styles = StyleSheet.create({
+  container: {
+    width,
+  },
   flatlist: {
     marginTop: 10,
   },
