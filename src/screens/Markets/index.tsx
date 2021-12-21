@@ -71,12 +71,12 @@ const Markets: FunctionComponent = () => {
   };
 
   const onSearchTextChange = (text: string) => {
-    const dataTest = activeTab.current?.list?.filter((item) =>
+    const searchData = activeTab.current?.list?.filter((item) =>
       item.marketCurrency.toLowerCase().includes(text.toLowerCase())
     );
     activeTabSearch.current = {
       title: activeTab.current?.title ?? "",
-      list: dataTest ?? [],
+      list: searchData ?? [],
     };
     setUpdateState((prevState) => !prevState);
   };
