@@ -9,21 +9,13 @@ import {
   Pressable,
   Platform,
 } from "react-native";
-import { Navigation } from "react-native-navigation";
 import TextField from "../../components/login/TextField";
 import { startApp } from "../../libs/navigation/Utils";
 import { textPrimary } from "../../styles/text.styles";
 
 const Login: FunctionComponent = () => {
-  const actionActiveMarkets = () => {
-    Navigation.mergeOptions("MARKETS_TAB", {
-      bottomTabs: {
-        currentTabIndex: 1,
-      },
-    });
-  };
   const onPressSignIn = () => {
-    startApp(actionActiveMarkets);
+    startApp();
   };
   return (
     <>

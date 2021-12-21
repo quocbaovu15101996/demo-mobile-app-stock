@@ -34,6 +34,11 @@ const layoutRoot: LayoutRoot = {
   root: {
     bottomTabs: {
       id: "BOTTOM_TABS_LAYOUT",
+      options: {
+        bottomTabs: {
+          currentTabIndex: 1,
+        },
+      },
       children: [
         {
           stack: {
@@ -102,8 +107,6 @@ const layoutRoot: LayoutRoot = {
   },
 };
 
-export function startApp(callbackFun: () => void): void {
-  Navigation.setRoot(layoutRoot).then(() => {
-    callbackFun?.();
-  });
+export function startApp(): void {
+  Navigation.setRoot(layoutRoot);
 }

@@ -7,13 +7,13 @@ const { width } = Dimensions.get("window");
 
 type Props = {
   list: CoinCard[];
-  findPriceInfoCoin: (marketName: string) => any;
+  findCoinPrices: (marketName: string) => any;
 };
 
 const Page: FC<Props> = (props) => {
   const renderItem: ListRenderItem<CoinCard> = ({ item }) => {
     return (
-      <Card item={item} priceInfo={props.findPriceInfoCoin(item.marketName)} />
+      <Card item={item} priceInfo={props.findCoinPrices(item.marketName)} />
     );
   };
   const keyExtractor = (_item: CoinCard, index: number): string =>

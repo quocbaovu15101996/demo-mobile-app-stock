@@ -5,17 +5,23 @@ import { textPrimary } from "../../styles/text.styles";
 
 type Props = {
   item: CoinCard;
-  priceInfo: any;
+  priceInfo?: any;
 };
 const Card: FC<Props> = ({ item, priceInfo }) => {
   const coinName = item.marketCurrency.toLowerCase();
   const imageUrl = `https://tokenize.exchange/assets/images/currency-logos/${coinName}.png`;
-  const { askPrice, low } = priceInfo;
-  const increase = askPrice - low;
-  let percentIncrease = Math.round((increase / (low ?? 1)) * 100) / 100;
-  if (!percentIncrease) {
-    percentIncrease = 0;
+  let percentIncrease = 0;
+  let increase = 0;
+  const askPrice = priceInfo?.askPrice ?? 0;
+  const lowPrice = priceInfo?.low ?? 1;
+  if (priceInfo) {
+    increase = askPrice - lowPrice;
+    percentIncrease = Math.round((increase / (lowPrice ?? 1)) * 100) / 100;
+    if (!percentIncrease) {
+      percentIncrease = 0;
+    }
   }
+
   const textPercent =
     increase > 0 ? `+${percentIncrease}%` : `-${percentIncrease}%`;
   return (
