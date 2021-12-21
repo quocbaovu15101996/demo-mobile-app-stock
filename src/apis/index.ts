@@ -6,7 +6,7 @@ export type ApiResponse = {
 
 export function fetchMarketSummaries(): Promise<ApiResponse> {
   return fetch(
-    "https://api.tokenize-dev.com/mobile-api/market/get-summaries"
+    "https://api.tokenize-dev.com/public/v1/market/get-summaries"
   ).then((res) => {
     return res.json();
   });

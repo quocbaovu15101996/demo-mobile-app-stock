@@ -5497,6 +5497,11 @@ react-native-navigation@^7.24.2:
     react-lifecycles-compat "2.0.0"
     tslib "1.9.3"
 
+react-native-pager-view@^6.0.0-rc.0:
+  version "6.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-6.0.0-rc.0.tgz#5222b2bdb7154ce52123c2f002949456f6a245a9"
+  integrity sha512-s4Hh84hcwFC/d07H86tekAuDAgVrUTT4dKHU62c8oPsUBuRMwGlsAtMCfK5c/Pde6YfP4NkH6kH4qizw3QoaGg==
+
 react-native@0.66.4:
   version "0.66.4"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.66.4.tgz#bf89a5fb18bd23046d889fb4de4ea2822a4d7805"
